@@ -2,4 +2,9 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 <h1>Login</h1>
+<form action="{{ url_for('user_pages.login') }}" method="post">
+<p><input type="text" placeholder="Username" name="username"></p>
+<p><input type="password" placeholder="Password" name="password"></p>
+<p><input type="submit" value="Submit"></p>
+</form>
 {% endblock %}
