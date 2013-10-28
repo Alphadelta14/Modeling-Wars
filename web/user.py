@@ -7,7 +7,7 @@
 #
 ####################################################################
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, session
 
 __all__ = ["user_blueprint"]
 
