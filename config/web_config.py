@@ -79,6 +79,8 @@ if __name__ == "__main__":
         with open(os.path.abspath(os.path.join(
                 os.path.dirname(__file__), "web_config_local.py")), "w") as f:
             f.write("""
+config = {}
+
 def apply_extra_config(app):
     app.secret_key = "%s"
         """%base64.b64encode(os.urandom(48)))
