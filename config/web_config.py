@@ -18,6 +18,7 @@ Configurations are not applied until apply_config is called on the Flask app.
 
 import os
 import importlib
+import warnings
 
 __all__ = ["config", "load_local_config", "apply_config"]
 
@@ -60,9 +61,24 @@ def apply_config(app):
     @brief Set app settings
     """
     app.debug = True
-    app.secret_key = '{run python config/web_config.py -c}'
+    app.secret_key = "UNSAFE"
     for key in config:
         app.config[key] = config[key]
     apply_extra_config(app)
+    if app.secret_key == "UNSAFE":
+        unsafe_warning = "Using ungenerated secret key, please run"\
+        "`python config/web_config.py -c`"
+        warnings.warn(unsafe_warning)
 
 load_local_config(raiseError=False)
+
+if __name__ == "__main__":
+    import sys
+    import base64
+    if len(sys.argv) > 1 and sys.argv[1] == "-c":
+        with open(os.path.abspath(os.path.join(
+                os.path.dirname(__file__), "web_config_local.py")), "w") as f:
+            f.write("""
+def apply_extra_config(app):
+    app.secret_key = "%s"
+        """%base64.b64encode(os.urandom(48)))
