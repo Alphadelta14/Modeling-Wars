@@ -9,11 +9,11 @@
 
 from flask import Blueprint, render_template
 
-__all__ = ["home"]
+__all__ = ["home_blueprint"]
 
-home = Blueprint("home_pages", __name__)
+home_blueprint = Blueprint("home_pages", __name__)
 
-@home.route("/")
-@home.route("/index")
+@home_blueprint.route("/")
+@home_blueprint.route("/index")
 def index():
     return render_template("home/index.html")

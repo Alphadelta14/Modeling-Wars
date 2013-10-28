@@ -9,7 +9,7 @@
 
 from flask import Blueprint, render_template
 
-__all__ = ["@user_blueprint"]
+__all__ = ["user_blueprint"]
 
 user_blueprint = Blueprint("user_pages", __name__)
 
