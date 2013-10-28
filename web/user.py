@@ -23,7 +23,7 @@ def index():
 @user_blueprint.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        data = request.json
+        data = request.form
         if not data:
             return render_template("user/login.html", error="Bad request")
         username = data.get("username", "")
