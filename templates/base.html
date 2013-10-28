@@ -4,6 +4,9 @@
     <title>{% block title %}{% endblock %} - Modeling Wars</title>
 </head>
 <body>
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
 {% block content %}{% endblock %}
 </body>
 </html>
